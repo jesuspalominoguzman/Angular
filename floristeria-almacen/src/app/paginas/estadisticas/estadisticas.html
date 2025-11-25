@@ -1,0 +1,109 @@
+<div class="estadisticas-container">
+    <div class="page-header">
+        <h1 class="page-title">Información en Tiempo Real</h1>
+        <p class="page-description">Estadísticas actualizadas instantáneamente con Signals</p>
+    </div>
+
+    <!-- Cards de Estadísticas Principales -->
+    <div class="stats-grid">
+        <div class="stat-card primary">
+            <div class="stat-icon">📦</div>
+            <div class="stat-content">
+                <h3>Total Productos</h3>
+                <p class="stat-value">{{ totalProductos() }}</p>
+                <span class="stat-label">Activos en el sistema</span>
+            </div>
+        </div>
+
+        <div class="stat-card success">
+            <div class="stat-icon">💰</div>
+            <div class="stat-content">
+                <h3>Valor Inventario</h3>
+                <p class="stat-value">{{ valorTotalInventario() | currency:'EUR':'symbol':'1.0-0' }}</p>
+                <span class="stat-label">Valor total en stock</span>
+            </div>
+        </div>
+
+        <div class="stat-card info">
+            <div class="stat-icon">📊</div>
+            <div class="stat-content">
+                <h3>Stock Total</h3>
+                <p class="stat-value">{{ totalStock() }}</p>
+                <span class="stat-label">Unidades totales</span>
+            </div>
+        </div>
+
+        <div class="stat-card warning">
+            <div class="stat-icon">⚠️</div>
+            <div class="stat-content">
+                <h3>Stock Bajo</h3>
+                <p class="stat-value">{{ productosStockBajo() }}</p>
+                <span class="stat-label">Productos < 50 unidades</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Movimientos -->
+    <div class="stats-section">
+        <h2 class="section-title">Movimientos de Inventario</h2>
+        <div class="movement-stats">
+            <div class="movement-card entrada">
+                <div class="movement-icon">📥</div>
+                <div class="movement-value">{{ totalEntradas() }}</div>
+                <div class="movement-label">Entradas Registradas</div>
+            </div>
+            <div class="movement-card salida">
+                <div class="movement-icon">📤</div>
+                <div class="movement-value">{{ totalSalidas() }}</div>
+                <div class="movement-label">Salidas Registradas</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Distribución por Categorías -->
+    <div class="stats-section">
+        <h2 class="section-title">Productos por Categoría</h2>
+        <div class="categories-grid">
+            @for (cat of categoriasStats(); track cat.nombre) {
+            <div class="category-item">
+                <span class="category-name">{{ cat.nombre }}</span>
+                <span class="category-count">{{ cat.cantidad }} productos</span>
+            </div>
+            } @empty {
+            <p class="empty-message">No hay categorías registradas</p>
+            }
+        </div>
+    </div>
+
+    <!-- Top 5 Productos con Mayor Stock -->
+    <div class="stats-section">
+        <h2 class="section-title">Top 5 - Mayor Stock</h2>
+        <div class="table-container">
+            <table class="top-products-table">
+                <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th>Categoría</th>
+                        <th>Stock</th>
+                        <th>Valor en Stock</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (producto of productosTopStock(); track producto.id) {
+                    <tr>
+                        <td class="product-name">{{ producto.nombre }}</td>
+                        <td>{{ producto.categoria }}</td>
+                        <td class="stock-value">{{ producto.stock }} unidades</td>
+                        <td class="money-value">{{ producto.stock * producto.precioVenta |
+                            currency:'EUR':'symbol':'1.2-2' }}</td>
+                    </tr>
+                    } @empty {
+                    <tr>
+                        <td colspan="4" class="empty-message">No hay productos registrados</td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,111 @@
+<div class="salidas-container">
+    <div class="page-header">
+        <div>
+            <h1 class="page-title">Registro de Salidas</h1>
+            <p class="page-description">Registra las salidas de mercancía del almacén</p>
+        </div>
+    </div>
+
+    <!-- Formulario de Registro -->
+    <div class="form-card">
+        <h2 class="form-title">Nueva Salida</h2>
+
+        @if (mensaje()) {
+        <div class="success-message">
+            {{ mensaje() }}
+        </div>
+        }
+
+        @if (error()) {
+        <div class="error-banner">
+            {{ error() }}
+        </div>
+        }
+
+        <form [formGroup]="formulario" (ngSubmit)="registrarSalida()" class="salida-form">
+            <div class="form-group">
+                <label for="productoId">Producto *</label>
+                <select id="productoId" formControlName="productoId" class="form-control"
+                    [class.error]="productoId?.invalid && productoId?.touched">
+                    <option value="">Seleccionar producto</option>
+                    @for (producto of productosActivos(); track producto.id) {
+                    <option [value]="producto.id">
+                        {{ producto.nombre }} (Stock disponible: {{ producto.stock }})
+                    </option>
+                    }
+                </select>
+                @if (productoId?.invalid && productoId?.touched) {
+                <div class="error-message">Selecciona un producto</div>
+                }
+                @if (formulario.value.productoId) {
+                <div class="info-message">
+                    Stock disponible: <strong>{{ stockDisponible() }} unidades</strong>
+                </div>
+                }
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="cantidad">Cantidad *</label>
+                    <input type="number" id="cantidad" formControlName="cantidad" class="form-control"
+                        [class.error]="cantidad?.invalid && cantidad?.touched" min="1" [max]="stockDisponible()"
+                        placeholder="1">
+                    @if (cantidad?.invalid && cantidad?.touched) {
+                    <div class="error-message">La cantidad debe ser mayor a 0</div>
+                    }
+                </div>
+
+                <div class="form-group flex-2">
+                    <label for="motivo">Motivo *</label>
+                    <input type="text" id="motivo" formControlName="motivo" class="form-control"
+                        [class.error]="motivo?.invalid && motivo?.touched"
+                        placeholder="Ej: Venta a cliente, Devolución a proveedor">
+                    @if (motivo?.invalid && motivo?.touched) {
+                    <div class="error-message">El motivo es obligatorio</div>
+                    }
+                </div>
+            </div>
+
+            <button type="submit" class="btn-primary" [disabled]="formulario.invalid">
+                <span>📤</span>
+                Registrar Salida
+            </button>
+        </form>
+    </div>
+
+    <!-- Historial de Salidas -->
+    <div class="historial-section">
+        <h2 class="section-title">Historial de Salidas</h2>
+
+        <div class="table-container">
+            <table class="movimientos-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Fecha</th>
+                        <th>Producto</th>
+                        <th>Cantidad</th>
+                        <th>Motivo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (salida of salidas(); track salida.id) {
+                    <tr>
+                        <td>{{ salida.id }}</td>
+                        <td>{{ salida.fecha | date:'dd/MM/yyyy HH:mm' }}</td>
+                        <td class="producto-nombre">{{ salida.productoNombre }}</td>
+                        <td class="cantidad-salida">-{{ salida.cantidad }}</td>
+                        <td>{{ salida.motivo }}</td>
+                    </tr>
+                    } @empty {
+                    <tr>
+                        <td colspan="5" class="empty-message">
+                            No hay salidas registradas
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

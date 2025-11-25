@@ -1,0 +1,63 @@
+td {
+    padding: 1rem;
+    font-size: 0.95rem;
+    color: #212529;
+    vertical-align: middle;
+}
+
+.producto-nombre {
+    font-weight: 600;
+    color: #2d5016;
+}
+
+.stock-bajo {
+    color: #dc3545;
+    font-weight: 600;
+}
+
+.acciones {
+    text-align: center;
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-editar,
+.btn-borrar {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+.btn-editar {
+    background-color: #007bff;
+    color: white;
+}
+
+.btn-editar:hover {
+    background-color: #0056b3;
+    transform: translateY(-1px);
+}
+
+.btn-borrar {
+    background-color: #dc3545;
+    color: white;
+}
+
+.btn-borrar:hover {
+    background-color: #c82333;
+    transform: translateY(-1px);
+}
+
+.btn-editar:active,
+.btn-borrar:active {
+    transform: translateY(0);
+}

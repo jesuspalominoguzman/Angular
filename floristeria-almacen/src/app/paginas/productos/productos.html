@@ -1,0 +1,45 @@
+<div class="productos-container">
+    <div class="page-header">
+        <div>
+            <h1 class="page-title">Gestión de Productos</h1>
+            <p class="page-description">Administra el catálogo de productos del almacén</p>
+        </div>
+        <button class="btn-primary" (click)="abrirModalNuevo()">
+            <span class="btn-icon">➕</span>
+            Añadir Producto
+        </button>
+    </div>
+
+    <div class="table-container">
+        <table class="productos-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Categoría</th>
+                    <th>Precio Compra</th>
+                    <th>Precio Venta</th>
+                    <th>Stock</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (producto of productosActivos(); track producto.id) {
+                <app-producto-linea [producto]="producto" (onEditar)="abrirModalEditar($event)">
+                </app-producto-linea>
+                } @empty {
+                <tr>
+                    <td colspan="7" class="empty-message">
+                        No hay productos activos en el sistema
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    @if (mostrarModal()) {
+    <app-producto-formulario [producto]="productoSeleccionado()" (onCerrar)="cerrarModal()">
+    </app-producto-formulario>
+    }
+</div>
