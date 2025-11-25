@@ -1,0 +1,41 @@
+<div class="right-menu right-menu-float">
+    <p-menu [model]="items">
+        <ng-template #start>
+            <div class="elements">
+                <span>
+                    <h1>Edit Task</h1>
+                </span>
+                <p-floatlabel variant="on">
+                    <input pInputText id="on_label" autocomplete="off" [(ngModel)]="title" />
+                    <label for="on_label">Title</label>
+                </p-floatlabel>
+                <textarea pTextarea rows="5" cols="27" style="resize: none" placeholder="Description" class="h-full" [(ngModel)]="description"></textarea>
+                <div class="task-info">
+                    <label class="label">Category</label>
+                    <p-select [options]="categories" optionLabel="name" optionValue="name" placeholder="Select a Category" class="w-full md:w-56" [(ngModel)]="category" />
+                </div>
+                <div class="task-info">
+                    <label class="label">Tag</label>
+                    <p-select [options]="tags" placeholder="Select a Tag" class="w-full md:w-56" [(ngModel)]="tag"></p-select>
+                </div>
+                <div class="task-info">
+                    <label class="label">Date</label>
+                    <p-calendar [(ngModel)]="date" showIcon dateFormat="dd-mm-yy" inputId="dueDate" />
+                </div>
+            </div>
+        </ng-template>
+        <ng-template #item let-item>
+            <a pRipple class="flex items-center p-menu-item-link">
+                <span [class]="item.icon"></span>
+                <span>{{ item.label }}</span>
+                <p-tag *ngIf="item.tag" [value]="item.tag" />
+            </a>
+        </ng-template>
+    </p-menu>
+    <div class="footer-actions">
+        <button class="save-changes-btn" (click)="saveTask()">Save Changes</button>
+        <button class="close-right-menu-footer" (click)="closeMenu.emit()" aria-label="Cerrar menú">&#10005; Close</button>
+    </div>
+</div>
+
+

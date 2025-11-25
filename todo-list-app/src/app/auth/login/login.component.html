@@ -1,0 +1,22 @@
+<div class="auth-container">
+    <h2>Login</h2>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="email">Mail:</label>
+        <input type="email" id="email" formControlName="email" required>
+        <div *ngIf="loginForm.controls['email'].invalid && (loginForm.controls['email'].dirty || loginForm.controls['email'].touched)">
+          <div *ngIf="loginForm.controls['email'].errors?.['required']">Mail is required.</div>
+          <div *ngIf="loginForm.controls['email'].errors?.['email']">Invalid mail format.</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" formControlName="password" required>
+        <div *ngIf="loginForm.controls['password'].invalid && (loginForm.controls['password'].dirty || loginForm.controls['password'].touched)">
+          <div *ngIf="loginForm.controls['password'].errors?.['required']">Password is required.</div>
+        </div>
+      </div>
+      <button type="submit" [disabled]="loginForm.invalid">Login</button>
+      <p> Don´t have an account? <a routerLink="/signup">Register here</a></p>
+    </form>
+  </div>

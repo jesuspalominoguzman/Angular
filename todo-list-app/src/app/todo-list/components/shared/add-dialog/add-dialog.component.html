@@ -1,0 +1,10 @@
+<p-dialog [header]="header" [(visible)]="visible" [modal]="true"  (visibleChange)="visibleChange.emit($event)">
+  <div class="field">
+    <label for="name">Name</label>
+    <input type="text" pInputText id="name" [(ngModel)]="name" class="w-full">
+  </div>
+  <ng-template pTemplate="footer">
+    <p-button icon="pi pi-times" (click)="closeDialog()" label="Cancel" styleClass="p-button-text"></p-button>
+    <p-button icon="pi pi-check" (click)="save()" label="Save"></p-button>
+  </ng-template>
+</p-dialog>

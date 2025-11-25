@@ -1,0 +1,42 @@
+<div class="flex-container-column task-list-container">
+    <h1>{{ pageTitle }}</h1>
+</div>
+
+<!-- Task list section -->
+<ul *ngIf="(filteredTasks$ | async) as tasksForStatus" class="task-list">
+  <li *ngFor="let task of tasksForStatus; let i = index" class="task-card">
+    <div class="task-header">
+      <strong>{{ task.title }}</strong>
+      <span class="status-badge" [ngClass]="task.status">{{ task.status | titlecase }}</span>
+      <!-- Expand/collapse button -->
+      <button (click)="expandedIndex = expandedIndex === i ? -1 : i" class="expand-btn" [attr.aria-label]="expandedIndex === i ? 'Collapse' : 'Expand'">
+        <i class="pi" [ngClass]="expandedIndex === i ? 'pi-chevron-up' : 'pi-chevron-down'"></i>
+      </button>
+      <!-- Edit button -->
+      <button (click)="openRightMenu(task)" class="edit-btn" aria-label="Edit Task">
+        <i class="pi pi-pencil"></i>
+      </button>
+    </div>
+    <div *ngIf="expandedIndex === i" class="task-details">
+      <p><strong>Description:</strong> {{ task.description || 'No description' }}</p>
+      <p><strong>ID:</strong> {{ task.id }}</p>
+      <p><strong>Category:</strong> {{ task.category || 'No category' }}</p>
+      <p><strong>Tag:</strong> {{ task.tag || 'No tag' }}</p>
+      <!-- Add more details here if needed -->
+    </div>
+  </li>
+</ul>
+
+<!-- Right menu for editing tasks -->
+<todo-list-right-menu *ngIf="showRightMenu" [task]="selectedTask" class="right-menu-float" (closeMenu)="closeRightMenu()" (saveTaskEvent)="updateTask($event)">
+</todo-list-right-menu>
+
+<!-- Message if no tasks are found -->
+<div *ngIf="(filteredTasks$ | async)?.length === 0">
+  <p>No tasks found for this status.</p>
+</div>
+
+<script>
+  // Used for expand/collapse state
+  let expandedIndex = -1;
+</script>

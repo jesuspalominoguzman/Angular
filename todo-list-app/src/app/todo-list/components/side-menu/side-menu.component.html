@@ -1,0 +1,54 @@
+<div class="side-menu">
+    <base href="./">
+    <todo-list-add-dialog
+        [visible]="categoryDialogVisible"
+        [header]="categoryDialogHeader"
+        (visibleChange)="categoryDialogVisible = $event"
+        (valueChange)="addNewCategory($event)"
+    ></todo-list-add-dialog>
+
+    <todo-list-add-dialog
+        [visible]="tagDialogVisible"
+        [header]="tagDialogHeader"
+        (visibleChange)="tagDialogVisible = $event"
+        (valueChange)="addNewTag($event)"
+    ></todo-list-add-dialog>
+
+    <todo-list-add-task-dialog
+        [visible]="taskDialogVisible"
+        [header]="taskDialogHeader"
+        (visibleChange)="taskDialogVisible = $event"
+        (valueChange)="addNewTask($event)"
+    ></todo-list-add-task-dialog>
+
+    <p-menu [model]="items" class="flex">
+        <ng-template #start>
+            <span>
+                <h1>Menu</h1>
+            </span>
+        </ng-template>
+        <ng-template #submenuheader let-item>
+            <span>{{ item.label }}</span>
+        </ng-template>
+        <ng-template #item let-item>
+            <a pRipple class="flex items-center p-menu-item-link" *ngIf="item">
+                <span [class]="item.icon"></span>
+                <span *ngIf="item.label" style="margin-right: 1rem">{{ item.label }}</span>
+                <p-badge *ngIf="item.badge" [value]="item.badge" />
+                <p-tag *ngIf="item.tag" [value]="item.tag" />
+                <div *ngIf="item.isDynamic" class="flex ml-auto">
+                    <button
+                        pButton
+                        pRipple
+                        type="button"
+                        icon="pi pi-trash"
+                        class="p-button-rounded p-button-danger custom-menu-button"
+                        (click)="item.icon === 'pi pi-tag' ? confirmDeleteCategory(+item.id) : confirmDeleteTag(item.label)"
+                    ></button>
+                </div>
+            </a>
+        </ng-template>
+    </p-menu>
+    <p-confirmDialog></p-confirmDialog>
+    <p-toast></p-toast>
+</div>

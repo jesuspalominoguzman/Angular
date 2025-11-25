@@ -1,0 +1,51 @@
+.side-menu {
+    position: absolute;
+    left: 0px;
+    top: 0;
+    right: 0;
+    width: 300px;
+    height: 100%;
+    background: linear-gradient(135deg, #b7e4c7 0%, #a5d8ff 100%);
+    border-right: 1px solid #7ec4cf;
+    padding: 20px;
+    box-sizing: border-box;
+    border-radius: 0px;
+    color: #234567;
+    box-shadow: 2px 0 12px rgba(37,99,235,0.12);
+}
+
+.side-menu h1 {
+    color: #234567 !important;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.custom-menu-button {
+    width: 2rem; 
+    height: 2rem; 
+    padding: 0.5rem; 
+    margin-left: auto; 
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+    background: #7ec4cf;
+    color: #234567;
+    border: none;
+}
+
+.custom-menu-button .pi {
+    font-size: 1rem; 
+}
+
+.p-menu-item-link > span:first-child + span {
+    margin-right: 1rem; 
+}
+
+.side-menu .p-menuitem-text, .side-menu .p-menuitem-link, .side-menu .p-menuitem {
+    color: #234567 !important;
+}
+
+.side-menu .p-menuitem-link:hover {
+    background: #b7e4c7 !important;
+    color: #234567 !important;
+}
