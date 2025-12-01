@@ -4,10 +4,13 @@ import { Producto } from '../../../modelos/producto';
 import { ProductoService } from '../../../servicios/producto.service';
 
 @Component({
-  selector: 'app-producto-linea',
+  selector: 'tr[app-producto-linea]',
   imports: [CommonModule],
   templateUrl: './producto-linea.html',
   styleUrl: './producto-linea.css',
+  host: {
+    '[class.producto-row]': 'true'
+  }
 })
 export class ProductoLinea {
   // Input signal para recibir el producto

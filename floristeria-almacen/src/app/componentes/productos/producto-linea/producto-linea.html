@@ -1,16 +1,14 @@
-<tr>
-    <td>{{ producto().id }}</td>
-    <td class="producto-nombre">{{ producto().nombre }}</td>
-    <td>{{ producto().categoria }}</td>
-    <td>{{ producto().precioCompra | currency:'EUR':'symbol':'1.2-2' }}</td>
-    <td>{{ producto().precioVenta | currency:'EUR':'symbol':'1.2-2' }}</td>
-    <td [class.stock-bajo]="producto().stock < 50">{{ producto().stock }} unidades</td>
-    <td class="acciones">
-        <button class="btn-editar" (click)="editar()" title="Editar producto">
-            ✏️ Editar
-        </button>
-        <button class="btn-borrar" (click)="borrar()" title="Eliminar producto">
-            🗑️ Borrar
-        </button>
-    </td>
-</tr>
+<td>{{ producto().id }}</td>
+<td class="producto-nombre">{{ producto().nombre }}</td>
+<td>{{ producto().categoria }}</td>
+<td>{{ producto().precioCompra | currency:'EUR':'symbol':'1.2-2' }}</td>
+<td>{{ producto().precioVenta | currency:'EUR':'symbol':'1.2-2' }}</td>
+<td [class.stock-bajo]="producto().stock < 50">{{ producto().stock }} unidades</td>
+<td class="acciones">
+    <button class="btn-editar" (click)="editar()" title="Editar producto">
+        ✏️ Editar
+    </button>
+    <button class="btn-borrar" (click)="borrar()" title="Eliminar producto">
+        🗑️ Borrar
+    </button>
+</td>

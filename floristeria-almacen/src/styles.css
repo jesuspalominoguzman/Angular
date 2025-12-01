@@ -1,6 +1,3 @@
-/* Global Styles for FloriDAM Application */
-
-/* CSS Reset and Base Styles */
 * {
     margin: 0;
     padding: 0;
@@ -22,7 +19,7 @@ body {
     flex-direction: column;
 }
 
-/* Main Application Layout - Sticky Footer */
+
 app-root {
     display: flex;
     flex-direction: column;
@@ -35,7 +32,7 @@ main {
     background-color: #f5f7fa;
 }
 
-/* Typography */
+
 h1,
 h2,
 h3,
@@ -46,14 +43,14 @@ h6 {
     line-height: 1.2;
 }
 
-/* Utility Classes */
+
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 2rem;
 }
 
-/* Responsive Design */
+
 @media (max-width: 768px) {
     .container {
         padding: 0 1rem;
@@ -98,7 +95,7 @@ h6 {
     }
 }
 
-/* Scrollbar Styling */
+
 ::-webkit-scrollbar {
     width: 10px;
     height: 10px;

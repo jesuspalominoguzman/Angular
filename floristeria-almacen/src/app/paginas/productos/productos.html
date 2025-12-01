@@ -25,8 +25,7 @@
             </thead>
             <tbody>
                 @for (producto of productosActivos(); track producto.id) {
-                <app-producto-linea [producto]="producto" (onEditar)="abrirModalEditar($event)">
-                </app-producto-linea>
+                <tr app-producto-linea [producto]="producto" (onEditar)="abrirModalEditar($event)"></tr>
                 } @empty {
                 <tr>
                     <td colspan="7" class="empty-message">

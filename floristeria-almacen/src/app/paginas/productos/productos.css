@@ -65,6 +65,7 @@
 
 .productos-table {
     width: 100%;
+    table-layout: fixed;
     border-collapse: collapse;
 }
 
@@ -75,7 +76,7 @@
 
 .productos-table th {
     padding: 1rem;
-    text-align: left;
+    text-align: center;
     font-weight: 600;
     font-size: 0.95rem;
     letter-spacing: 0.3px;
@@ -87,68 +88,67 @@
     font-size: 0.95rem;
     color: #212529;
     vertical-align: middle;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 /* ID Column */
 .productos-table th:nth-child(1),
 .productos-table td:nth-child(1) {
-    width: 60px;
-    text-align: center;
+    width: 80px;
 }
 
 /* Nombre Column */
 .productos-table th:nth-child(2),
 .productos-table td:nth-child(2) {
-    width: 150px;
-    text-align: left;
+    width: 180px;
 }
 
 /* Categoría Column */
 .productos-table th:nth-child(3),
 .productos-table td:nth-child(3) {
-    width: 130px;
-    text-align: center;
+    width: 120px;
 }
 
 /* Precio Compra Column */
 .productos-table th:nth-child(4),
 .productos-table td:nth-child(4) {
     width: 140px;
-    text-align: center;
 }
 
 /* Precio Venta Column */
 .productos-table th:nth-child(5),
 .productos-table td:nth-child(5) {
     width: 140px;
-    text-align: center;
 }
 
 /* Stock Column */
 .productos-table th:nth-child(6),
 .productos-table td:nth-child(6) {
     width: 150px;
-    text-align: center;
 }
 
 /* Acciones Column */
 .productos-table th:nth-child(7),
 .productos-table td:nth-child(7) {
-    width: auto;
-    text-align: center;
-    min-width: 200px;
+    width: 220px;
 }
 
-.productos-table tbody tr {
+.productos-table tbody tr,
+.producto-row {
     border-bottom: 1px solid #e9ecef;
     transition: background-color 0.2s ease;
 }
 
-.productos-table tbody tr:hover {
+.productos-table tbody tr:hover,
+.producto-row:hover {
     background-color: #f8f9fa;
 }
 
-.productos-table tbody tr:last-child {
+.productos-table tbody tr:last-child,
+.producto-row:last-child {
     border-bottom: none;
 }
 
